@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditi's Happy Space</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center text-purple-800 mb-8">Aditi's Happy Space</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Welcome, Aditi!</h2>
+        <p class="text-gray-700">This is your happy corner. A place just for you to relax, have fun, and feel good!</p>
+      </div>
+
+      <!-- Mood Booster -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Mood Booster</h2>
+        <button onclick="generateJoke()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+          Click for a Joke!
+        </button>
+        <p id="joke" class="mt-4 text-gray-700"></p>
+      </div>
+
+      <!-- Playlist -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Your Happy Playlist</h2>
+        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC" width="100%" height="380" frameBorder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      </div>
+
+      <!-- Stress Buster -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Stress Buster</h2>
+        <div class="text-center">
+          <p id="breatheState" class="text-3xl font-bold text-purple-500 mb-2">Breathe In</p>
+          <p id="seconds" class="text-2xl text-gray-700">4</p>
+        </div>
+      </div>
+
+      <!-- Message Board -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Message Board</h2>
+        <p class="text-gray-700 mb-4">Hey Aditi! Remember, you're awesome and capable of amazing things. Keep smiling! 😊</p>
+        <textarea class="w-full p-2 border border-gray-300 rounded" rows="4" placeholder="Write your thoughts here..."></textarea>
+      </div>
+
+      <!-- Favorite Things -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4">Your Favorite Things</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <img src="placeholder.svg" alt="Favorite Place" class="rounded" />
+          <img src="placeholder.svg" alt="Favorite Hobby" class="rounded" />
+          <img src="placeholder.svg" alt="Favorite Memory" class="rounded" />
+          <img src="placeholder.svg" alt="Favorite Food" class="rounded" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const jokes = [
+      "Why don't scientists trust atoms? Because they make up everything!",
+      "What do you call a fake noodle? An impasta!",
+      "Why did the scarecrow win an award? He was outstanding in his field!",
+      "Why don't eggs tell jokes? They'd crack each other up!",
+      "What do you call a can opener that doesn't work? A can't opener!"
+    ];
+
+    function generateJoke() {
+      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      document.getElementById('joke').textContent = randomJoke;
+    }
+
+    let breatheState = 'Breathe In';
+    let seconds = 4;
+    setInterval(() => {
+      if (seconds === 0) {
+        if (breatheState === 'Breathe In') {
+          breatheState = 'Hold';
+          seconds = 4;
+        } else if (breatheState === 'Hold') {
+          breatheState = 'Breathe Out';
+          seconds = 7;
+        } else {
+          breatheState = 'Breathe In';
+          seconds = 4;
+        }
+      }
+      document.getElementById('breatheState').textContent = breatheState;
+      document.getElementById('seconds').textContent = seconds--;
+    }, 1000);
+  </script>
+</body>
+  </html>
+  
